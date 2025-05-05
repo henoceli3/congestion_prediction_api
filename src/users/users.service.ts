@@ -63,6 +63,23 @@ export class UsersService {
     return user;
   }
 
+  async findByEmail(email: string) {
+    return this.prisma.user.findFirst({
+      where: {
+        email,
+        active: true,
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        first_name: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+  }
+
   async update(id: string, updateUserDto: UpdateUserDto) {
     await this.findOne(id);
 

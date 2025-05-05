@@ -8,12 +8,14 @@ import {
   Delete,
   ValidationPipe,
   UsePipes,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ParamIdDto } from './dto/param-id.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -31,16 +33,19 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('all')
   findAll() {
     return this.usersService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get('get-one/:id')
   findOne(@Param() params: ParamIdDto) {
     return this.usersService.findOne(params.id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch('update/:id')
   @UsePipes(
     new ValidationPipe({
@@ -68,6 +73,7 @@ export class UsersController {
     return this.usersService.changePassword(params.id, changePasswordDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete('delete:id')
   @UsePipes(
     new ValidationPipe({
