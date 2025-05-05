@@ -17,6 +17,7 @@ model User {
   trajets   Trajet[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
+  active     Boolean   @default(true)
 }
 
 model Trajet {
