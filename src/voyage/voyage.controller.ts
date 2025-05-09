@@ -38,12 +38,12 @@ export class VoyageController {
     return this.voyageService.findAll();
   }
 
-  @Get(':id')
+  @Get('get-one/:id')
   findOne(@Param('id') id: string) {
     return this.voyageService.findOne(id);
   }
 
-  @Patch(':id')
+  @Patch('update/:id')
   @UsePipes(
     new ValidationPipe({
       transform: true,
@@ -55,7 +55,7 @@ export class VoyageController {
     return this.voyageService.update(id, updateVoyageDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.voyageService.remove(id);
   }
