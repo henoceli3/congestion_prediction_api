@@ -1,19 +1,54 @@
-import { IsNotEmpty, IsString, IsNumber } from 'class-validator';
+import { IsString, IsDate, IsNumber, IsBoolean } from 'class-validator';
 
 export class CreateTrajetDto {
   @IsString()
-  @IsNotEmpty()
+  voyageId: string;
+
+  @IsBoolean()
+  selected: boolean;
+
+  @IsString()
   depart: string;
 
   @IsString()
-  @IsNotEmpty()
   arrivee: string;
 
+  @IsDate()
+  date: Date;
+
   @IsNumber()
-  @IsNotEmpty()
+  heure: number;
+
+  @IsString()
+  jour_semaine: string;
+
+  @IsString()
+  type_jour: string;
+
+  @IsString()
+  meteo: string;
+
+  @IsString()
+  evenement: string;
+
+  @IsNumber()
+  nb_voitures: number;
+
+  @IsString()
+  commune: string;
+
+  @IsNumber()
+  latitude: number;
+
+  @IsNumber()
+  longitude: number;
+
+  @IsNumber()
+  duree: number;
+
+  @IsNumber()
   distance: number;
 
   @IsString()
-  @IsNotEmpty()
   userId: string;
 }
