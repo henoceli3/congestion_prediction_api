@@ -16,27 +16,27 @@ import { UpdateTrajetDto } from './dto/update-trajet.dto';
 export class TrajetsController {
   constructor(private readonly trajetsService: TrajetsService) {}
 
-  @Post()
+  @Post('create')
   create(@Request() req, @Body() createTrajetDto: CreateTrajetDto) {
     return this.trajetsService.create(createTrajetDto, req.user.userId);
   }
 
-  @Get()
+  @Get('get-all')
   findAll() {
     return this.trajetsService.findAll();
   }
 
-  @Get(':id')
+  @Get('get-one/:id')
   findOne(@Param('id') id: string) {
     return this.trajetsService.findOne(id);
   }
 
-  @Patch(':id')
+  @Patch('update/:id')
   update(@Param('id') id: string, @Body() updateTrajetDto: UpdateTrajetDto) {
     return this.trajetsService.update(id, updateTrajetDto);
   }
 
-  @Delete(':id')
+  @Delete('remove/:id')
   remove(@Param('id') id: string) {
     return this.trajetsService.remove(id);
   }
